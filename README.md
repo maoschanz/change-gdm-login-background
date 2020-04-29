@@ -6,12 +6,11 @@ Based on the work of [Lynn, on ubuntu-fr.org](https://forum.ubuntu-fr.org/viewto
 
 <!-- TODO
 
-- support pour adwaita
-- faire des fonctions
+- renommer theme en tmp
 - cp ça peut renommer, du coup :
     - on peut choisir un fichier avec zenity
     - ou le donner comme argument au script
-- quid du repeat ?
+- quid du repeat ? de la taille d'écran ?
 
      TODO -->
 
