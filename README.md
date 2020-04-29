@@ -6,11 +6,13 @@ Based on the work of [Lynn, on ubuntu-fr.org](https://forum.ubuntu-fr.org/viewto
 
 <!-- TODO
 
-- renommer theme en tmp
-- cp ça peut renommer, du coup :
-    - on peut choisir un fichier avec zenity
-    - ou le donner comme argument au script
+- vérifier que le fichier est png
+- choisir un fichier avec zenity
 - quid du repeat ? de la taille d'écran ?
 
      TODO -->
+
+```sh
+./change-background path/to/soe/image.png
+```
 

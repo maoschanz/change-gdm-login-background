@@ -16,8 +16,6 @@ fi
 ################################################################################
 # Constants ####################################################################
 
-background_source_name=noise-texture.png # TODO $1
-
 GST=/usr/share/gnome-shell/gnome-shell-theme.gresource
 
 BACKGROUND_TARGET_NAME=noise-texture.png
@@ -52,8 +50,8 @@ function edit_css_content {
 		exit 1
 	fi
 
-	# Apply customization to 'gdm3.css' file
 	sed -i -z "s%${ORIGINAL_BACKGROUND}%${EDITED_BACKGROUND}%" "theme/${css_file}"
+	# Apply customization to the .css file
 }
 
 function create_new_gresource {
@@ -81,21 +79,25 @@ EOF
 function install_new_theme {
 	# Copy your picture renamed 'noise-texture.png' to /usr/share/gnome-shell/theme
 	echo "Copy your picture as 'noise-texture.png' to /usr/share/gnome-shell/theme"
-	cp ${background_source_name} /usr/share/gnome-shell/theme/${BACKGROUND_TARGET_NAME} && echo "Done !"
+	sudo cp "$1" /usr/share/gnome-shell/theme/${BACKGROUND_TARGET_NAME} && echo "Done !"
 
 	# Copy the custom 'gnome-shell-theme.gresource' to /usr/share/gnome-shell
 	echo "Copy the custom 'gnome-shell-theme.gresource' to /usr/share/gnome-shell/theme"
-	cp theme/gnome-shell-theme.gresource /usr/share/gnome-shell && echo "Done !"
+	sudo cp theme/gnome-shell-theme.gresource /usr/share/gnome-shell && echo "Done !"
 }
 
 ################################################################################
 # "Main" part of the script ####################################################
 
+background_source_name=$1
+
+# TODO s'assurer quil y a bien un $1
+
 extract_current_theme
 
-# the gdm3 picture 'noise-texture.png' must be found in current directory
 if test -f ${background_source_name}; then
 	cp -vf ${background_source_name} theme/${BACKGROUND_TARGET_NAME}
+	# TODO confirmer que c'est un PNG
 else
 	printf '%s\n' "'${background_source_name}' file not found!"
 	exit 1
@@ -117,7 +119,7 @@ if test -f $GST; then
 	echo "Done !" # FIXME sans doute idiot. Ramener un backup daté dans pwd
 fi
 
-sudo install_new_theme
+install_new_theme "${background_source_name}"
 
 # Make new gnome-shell-theme.gresource as default alternative
 echo "Make new CSS the new default alternative"
